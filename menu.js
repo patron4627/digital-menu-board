@@ -22,16 +22,18 @@ const menuData = {
 
 export default function MenuScreen() {
   const [searchParams] = useSearchParams();
-  const screenId = searchParams.get("screen") || "1";
+  const screenId = searchParams.get("screen"); // Liest den screen-Parameter aus der URL
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
-    setMenu(menuData[screenId] || menuData[1]);
+    // Wenn der screen-Parameter nicht vorhanden oder ungültig ist, setze auf "1"
+    const validScreenId = menuData[screenId] ? screenId : "1";
+    setMenu(menuData[validScreenId]);
   }, [screenId]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold mb-6">Menü - Bildschirm {screenId}</h1>
+      <h1 className="text-4xl font-bold mb-6">Menü - Bildschirm {screenId || "1"}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {menu.map((item, index) => (
           <div key={index} className="bg-gray-800 p-4 rounded-xl shadow-lg text-center">
