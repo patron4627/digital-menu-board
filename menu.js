@@ -46,3 +46,18 @@ export default function MenuScreen() {
     </div>
   );
 }
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MenuScreen from "./MenuScreen";  // Importiere die MenuScreen-Komponente
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/menu" element={<MenuScreen />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
